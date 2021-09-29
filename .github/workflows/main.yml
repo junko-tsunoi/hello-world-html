@@ -25,5 +25,3 @@ jobs:
           SLACK_TITLE: Test Failure
           SLACK_COLOR: danger
         if: always()
-          
-        if: always()
