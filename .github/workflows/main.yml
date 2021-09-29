@@ -5,16 +5,18 @@ on:
     branches: [ master ]
 
 jobs:
-  build_and_deploy_prod:
+  deploy:
     runs-on: ubuntu-latest
+    
     steps:
+      - name: Run deployment process
+        run: exit 0
+        
       - name: Slack Notification on Success
         if: always()
-        uses: lazy-actions/slatify@master
+        uses: 8398a7/action-slack@v3
         with:
-          type: ${{ job.status }}
-          job_name: '*Test*'
-          channel: '#infra_slack_test'
-          mention: 'here'
-          mention_if: 'failure'
-          url: ${{ secrets.SLACK_WEBHOOK }}
+          status: ${{ job.status }}
+          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took # selectable (default: repo,message)
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
