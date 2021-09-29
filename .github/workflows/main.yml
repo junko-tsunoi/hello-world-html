@@ -10,7 +10,7 @@ jobs:
     
     steps:
       - name: Run deployment process
-        run: exit 0
+        run: exit 1
         
       - name: Slack Notification on Success
         if: always()
