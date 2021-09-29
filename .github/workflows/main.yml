@@ -13,12 +13,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Slack Notification on Success
-        # 成功時のみ実行
         if: always()
         uses: rtCamp/action-slack-notify@v2.0.2
         env:
           SLACK_CHANNEL: general
           SLACK_ICON: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
           SLACK_TITLE: 'Workflow #${{ github.run_number }} succeeded'
-          SLACK_COLOR: ${{ jobs.status }}
+          SLACK_COLOR: ${{ job.status }}
           SLACK_MESSAGE: '${{ needs.Build.outputs.done }} ${{ needs.TestA.outputs.done }} ${{ needs.TestB.outputs.done }} ${{ needs.Deploy.outputs.done }}'
