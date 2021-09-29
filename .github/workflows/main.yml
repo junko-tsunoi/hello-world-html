@@ -16,12 +16,12 @@ jobs:
         run: exit 0
 
       - name: Notify deployment
-        uses: rtCamp/action-slack-notify@v2
+        uses: rtCamp/action-slack-notify@master
         with:
           status: ${{ job.status }}
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_CHANNEL: deploy
-          SLACK_TITLE: Test Failure
+          SLACK_TITLE: 'Test Failure'
           SLACK_COLOR: ${{ job.status }}
         if: always()
