@@ -4,19 +4,17 @@ on:
   push:
     branches: [ master ]
 
-env:
-  SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
-
 jobs:
   build_and_deploy_prod:
     runs-on: ubuntu-latest
     steps:
       - name: Slack Notification on Success
         if: always()
-        uses: rtCamp/action-slack-notify@master
-        env:
-          SLACK_CHANNEL: general
-          SLACK_USERNAME: 'Deploy'
-          SLACK_ICON: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
-          SLACK_TITLE: 'Workflow #${{ github.run_number }} succeeded'
-          SLACK_COLOR: ${{ job.status }}
+        uses: lazy-actions/slatify@master
+        with:
+          type: ${{ job.status }}
+          job_name: '*Test*'
+          channel: '#infra_slack_test'
+          mention: 'here'
+          mention_if: 'failure'
+          url: ${{ secrets.SLACK_WEBHOOK }}
