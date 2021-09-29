@@ -17,7 +17,7 @@ jobs:
         uses: rtCamp/action-slack-notify@v2.0.2
         env:
           SLACK_CHANNEL: general
+          SLACK_USERNAME: rtCamp
           SLACK_ICON: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
           SLACK_TITLE: 'Workflow #${{ github.run_number }} succeeded'
           SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: '${{ needs.Build.outputs.done }} ${{ needs.TestA.outputs.done }} ${{ needs.TestB.outputs.done }} ${{ needs.Deploy.outputs.done }}'
