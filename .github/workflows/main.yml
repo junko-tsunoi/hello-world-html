@@ -18,6 +18,7 @@ jobs:
         uses: rtCamp/action-slack-notify@v2.0.2
         env:
           SLACK_CHANNEL: general
+          SLACK_ICON: ':sweat_smile:'
           SLACK_TITLE: Success Deply
           SLACK_COLOR: good
           SLACK_MESSAGE: 成功したよ
@@ -28,6 +29,7 @@ jobs:
         if: failure()
         env:
           SLACK_CHANNEL: general
+          SLACK_ICON: ':sweat_smile:'
           SLACK_TITLE: Failure Deply
           SLACK_COLOR: danger
           SLACK_MESSAGE: 失敗したよ
