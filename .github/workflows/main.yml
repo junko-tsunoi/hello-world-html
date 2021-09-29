@@ -5,7 +5,6 @@ on:
     branches: [ master ]
 
 env:
-  # 環境変数にWebhookのURLを設定
   SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
 
 jobs:
@@ -14,10 +13,10 @@ jobs:
     steps:
       - name: Slack Notification on Success
         if: always()
-        uses: rtCamp/action-slack-notify@v2.0.2
+        uses: rtCamp/action-slack-notify@master
         env:
           SLACK_CHANNEL: general
-          SLACK_USERNAME: rtCamp
+          SLACK_USERNAME: 'Deploy'
           SLACK_ICON: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
           SLACK_TITLE: 'Workflow #${{ github.run_number }} succeeded'
           SLACK_COLOR: ${{ job.status }}
